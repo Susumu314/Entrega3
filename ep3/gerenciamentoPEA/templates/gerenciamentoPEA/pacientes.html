@@ -1,0 +1,9 @@
+{% if paciente_list %}
+    <ul>
+    {% for paciente in paciente_list %}
+        <li><a href="/gerenciamentoPEA/pacientes/{{ paciente.id_paciente}}/">{{ paciente.cpf }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Não tem pacientes.</p>
+{%endif%}

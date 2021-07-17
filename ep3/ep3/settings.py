@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'gerenciamentoPEA.apps.GerenciamentopeaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,13 +75,19 @@ WSGI_APPLICATION = 'ep3.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    # Tirar esses comentarios e criar as tabelas Pacientes - Exames - Amostras no data.ime se algum dia voltar a funcionar
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': '6805993',
+    #     'USER': '8989317',
+    #     'PASSWORD': 'AeCh6ohF',
+    #     'HOST': 'data.ime.usp.br',
+    #     'PORT': '23432',
+    # }
+
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '6805993',
-        'USER': '8989317',
-        'PASSWORD': 'AeCh6ohF',
-        'HOST': 'data.ime.usp.br',
-        'PORT': '23432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
