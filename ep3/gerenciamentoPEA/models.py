@@ -8,7 +8,7 @@ class Paciente(models.Model):
     cpf = models.CharField(max_length=11, unique=True)
     nome = models.CharField(max_length=255)
     endereco = models.CharField(max_length=255)
-    nascimento = models.DateField
+    nascimento = models.DateField()
 
 class Exame(models.Model):
     id_exame = models.IntegerField(primary_key=True)
