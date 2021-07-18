@@ -1,7 +1,7 @@
 {% if paciente_list %}
     <ul>
     {% for paciente in paciente_list %}
-        <li><a href="/gerenciamentoPEA/pacientes/{{ paciente.id_paciente}}/">{{ paciente.cpf }}</a></li>
+        <li><a href="{% url 'p_detalhes' paciente.id_paciente %}">{{ paciente.cpf }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

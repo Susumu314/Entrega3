@@ -1,0 +1,45 @@
+<h1>Cadastre Paciente</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'save_paciente'%}" method="post">
+    {% csrf_token %}
+    <div>
+      <fieldset class="module aligned ">
+            <div class="form-row field-id_paciente">
+                    <div>
+                            <label class="required" for="id_id_paciente">Id paciente:</label>
+                            
+                                <input type="number" name="id_paciente" class="vIntegerField" required="" id="id_id_paciente">
+                    </div>
+            </div>
+            <div class="form-row field-cpf">
+                    <div>
+                            <label class="required" for="id_cpf">Cpf:</label>
+                                <input type="text" name="cpf" class="vTextField" maxlength="11" required="" id="id_cpf">
+                    </div>
+            </div>
+            <div class="form-row field-nome">
+                    <div>
+                            <label class="required" for="id_nome">Nome:</label>
+                                <input type="text" name="nome" class="vTextField" maxlength="255" required="" id="id_nome">
+                    </div>
+            </div>
+            <div class="form-row field-endereco">
+                    <div>
+                            <label class="required" for="id_endereco">Endereco:</label>
+                                <input type="text" name="endereco" class="vTextField" maxlength="255" required="" id="id_endereco">   
+                    </div>
+            </div>
+            <div class="form-row field-nascimento">
+                    <div>
+                            <label class="required" for="id_nascimento">Nascimento(aaaa-mm-dd):</label>
+                                <input type="text" name="nascimento" class="vDateField" size="10" required="" id="id_nascimento">
+                    </div>
+            </div>
+    </fieldset>
+    <div class="submit-row">
+    <input type="submit" value="Save">
+    </div>
+    </div>
+    </form>

@@ -5,9 +5,10 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('pacientes/', views.pacientes, name='pacientes'),
-    path('pacientes/<int:id_paciente>/', views.paciente_detail, name='p_detail'),
-    path('pacientes/<int:id_paciente>/exames/', views.exames_do_paciente, name='exames_p'),
-    # ex: /polls/5/vote/
-    path('pacientes/<int:id_paciente>/adiciona_exame/', views.faz_exame, name='add_exame'),
-
+    path('pacientes/add_paciente/', views.add_paciente, name='add_paciente'),
+    path('pacientes/save_paciente/', views.save_paciente, name='save_paciente'),
+    path('pacientes/<int:id_paciente>/', views.paciente_detail, name='p_detalhes'),
+    path('pacientes/<int:id_paciente>/exames/', views.exames_do_paciente, name='p_exames'),
+    path('exames/adiciona_exame/', views.add_exame, name='add_exame'),
+    path('exames/save_exame/', views.save_exame, name='save_exame'),
 ]

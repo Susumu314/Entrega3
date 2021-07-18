@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Paciente, Paciente_exame_amostra, Exame, Amostra
 from django.template import loader
+from django.urls import reverse
 # Create your views here.
 
 def index(request):
@@ -20,5 +21,39 @@ def exames_do_paciente(request, id_paciente):
     response = "Você está olhando para os exames do paciente %s."
     return HttpResponse(response % id_paciente)
 
-def faz_exame(request, id_paciente):
-    return HttpResponse("Você está adicionando exame do paciente %s." % id_paciente)
+def add_exame(request):
+    return render(request, 'gerenciamentoPEA/add_exame.html', {})
+
+def add_paciente(request):
+    return render(request, 'gerenciamentoPEA/add_paciente.html', {})
+
+def save_paciente(request):
+    try:#mudar aqui para nao aceitar id que ja existe
+        p = Paciente(id_paciente=request.POST['id_paciente'], cpf=request.POST['cpf'], nome=request.POST['nome'], endereco=request.POST['endereco'], nascimento=request.POST['nascimento'])
+    except (KeyError):
+        # Redisplay the question voting form.
+        return render(request, 'gerenciamentoPEA/add_paciente.html', {
+            'error_message': "Deu erro para cadastrar o paciente",
+        })
+    else:
+        p.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return render(request, 'gerenciamentoPEA/save_paciente.html', {'paciente': p})
+
+def save_exame(request):
+    try:#mudar aqui para nao aceitar id que ja existe
+        p = get_object_or_404(Paciente, pk=request.POST['id_paciente'])
+        p.exame_set.create(id_exame=request.POST['id_exame'], tipo=request.POST['tipo'], virus=request.POST['virus'])
+    except (KeyError):
+        # Redisplay the question voting form.
+        return render(request, 'gerenciamentoPEA/add_exame.html', {
+            'error_message': "Deu erro para cadastrar o exame",
+        })
+    else:
+        p.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return render(request, 'gerenciamentoPEA/save_exame.html', {'paciente': p})
