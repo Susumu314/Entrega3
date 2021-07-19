@@ -1,0 +1,55 @@
+<h1>Atualize Exame</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'save_exame'%}" method="post">
+    {% csrf_token %}
+        <div>
+          <fieldset class="module aligned ">
+                <div class="form-row field-id_exame">
+                        <div>
+                                <label class="required" for="id_id_exame">Id exame:</label>
+                                    <input type="number" name="id_exame" value="{{exame.id_exame}}" class="vIntegerField" required="" id="id_id_exame" readonly="True">
+                        </div>
+                </div>
+                <div class="form-row field-tipo">
+                        <div>
+                                <label class="required" for="id_tipo">Tipo:</label>
+                                    <input type="text" name="tipo" value="{{exame.tipo}}" class="vTextField" maxlength="255" required="" id="id_tipo">  
+                        </div>
+                </div>
+                <div class="form-row field-virus">
+                        <div>
+                                <label class="required" for="id_virus">Virus:</label>
+                                    <input type="text" name="virus" value="{{exame.virus}}" class="vTextField" maxlength="255" required="" id="id_virus">
+                        </div>
+                </div>
+                <div class="form-row field-id_paciente">
+                        <div>
+                                <label class="required" for="id_id_paciente">Id paciente:</label>
+                                    <div class="related-widget-wrapper">
+            <select name="id_paciente" required="" id="id_id_paciente">
+          <option value="" selected="">---------</option>
+          {% for paciente in paciente_list %}
+                {%if paciente.id_paciente == exame.id_paciente.id_paciente %}
+                        <option value="{{paciente.id_paciente}}" selected="selected">{{paciente.cpf}}</option>
+                {% else %}
+                        <option value="{{paciente.id_paciente}}">{{paciente.cpf}}</option>
+                {% endif %}
+          {% endfor %}
+<!--           
+          
+        
+          <option value="2">Paciente object (2)</option>
+        
+          <option value="3">Paciente object (3)</option>
+         -->
+        </select>
+        </div>       
+                        </div>
+                </div>
+        </fieldset>
+        <div class="submit-row">
+                <input type="submit" value="Save">
+        </div>
+        </div>
+    </form>

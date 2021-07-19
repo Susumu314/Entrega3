@@ -13,9 +13,17 @@ def pacientes(request):
     paciente_list = Paciente.objects.order_by('cpf')
     return render(request, 'gerenciamentoPEA/pacientes.html', {'paciente_list': paciente_list})
 
+def exames(request):
+    exame_list = Exame.objects.order_by('id_exame')
+    return render(request, 'gerenciamentoPEA/exames.html', {'exame_list': exame_list})
+
 def paciente_detail(request, id_paciente):
     paciente = get_object_or_404(Paciente, pk=id_paciente)
     return render(request, 'gerenciamentoPEA/paciente_detalhes.html', {'paciente': paciente})
+
+def exame_detail(request, id_exame):
+    exame = get_object_or_404(Exame, pk=id_exame)
+    return render(request, 'gerenciamentoPEA/exame_detalhes.html', {'exame': exame})
 
 def exames_do_paciente(request, id_paciente):
     response = "Você está olhando para os exames do paciente %s."
@@ -51,7 +59,7 @@ def delete_paciente(request, id_paciente):
     Paciente.objects.filter(id_paciente=id_paciente).delete()
     return render(request, 'gerenciamentoPEA/delete_paciente.html', {})
 
-def save_exame(request):
+def save_exame(request):#Aqui ta dando erro pq estou usando o .create tem que ter um if que checa se ja existe o exame para altera-lo
     try:#mudar aqui para nao aceitar id que ja existe
         p = get_object_or_404(Paciente, pk=request.POST['id_paciente'])
         p.exame_set.create(id_exame=request.POST['id_exame'], tipo=request.POST['tipo'], virus=request.POST['virus'])
@@ -66,3 +74,12 @@ def save_exame(request):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return render(request, 'gerenciamentoPEA/save_exame.html', {'paciente': p})
+    
+def change_exame(request, id_exame):
+    exame = get_object_or_404(Exame, pk=id_exame)
+    paciente_list = Paciente.objects.order_by('id_paciente')
+    return render(request, 'gerenciamentoPEA/change_exame.html', {'exame': exame, 'paciente_list':paciente_list})
+
+def delete_exame(request, id_exame):
+    Exame.objects.filter(id_exame=id_exame).delete()
+    return render(request, 'gerenciamentoPEA/delete_exame.html', {})

@@ -1,0 +1,11 @@
+{% if exame_list %}
+    <ul>
+    {% for exame in exame_list %}
+        <li><a href="{% url 'e_detalhes' exame.id_exame %}">{{ exame.id_exame }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Não tem exames.</p>
+{%endif%}
+<a href="{% url 'add_exame'%}">Adicionar exames</a><br>
+<a href="{% url 'index'%}">Return</a>
