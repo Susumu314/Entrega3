@@ -22,7 +22,8 @@ def exames_do_paciente(request, id_paciente):
     return HttpResponse(response % id_paciente)
 
 def add_exame(request):
-    return render(request, 'gerenciamentoPEA/add_exame.html', {})
+    paciente_list = Paciente.objects.order_by('id_paciente')
+    return render(request, 'gerenciamentoPEA/add_exame.html', {'paciente_list': paciente_list})
 
 def add_paciente(request):
     return render(request, 'gerenciamentoPEA/add_paciente.html', {})
@@ -41,6 +42,14 @@ def save_paciente(request):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return render(request, 'gerenciamentoPEA/save_paciente.html', {'paciente': p})
+
+def change_paciente(request, id_paciente):
+    paciente = get_object_or_404(Paciente, pk=id_paciente)
+    return render(request, 'gerenciamentoPEA/change_paciente.html', {'paciente': paciente})
+
+def delete_paciente(request, id_paciente):
+    Paciente.objects.filter(id_paciente=id_paciente).delete()
+    return render(request, 'gerenciamentoPEA/delete_paciente.html', {})
 
 def save_exame(request):
     try:#mudar aqui para nao aceitar id que ja existe

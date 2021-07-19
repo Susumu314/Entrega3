@@ -1,5 +1,4 @@
 <h1>Cadastre Exame</h1>
-
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'save_exame'%}" method="post">
@@ -30,13 +29,16 @@
                                     <div class="related-widget-wrapper">
             <select name="id_paciente" required="" id="id_id_paciente">
           <option value="" selected="">---------</option>
+          {% for paciente in paciente_list %}
+          <option value="{{paciente.id_paciente}}">{{paciente.cpf}}</option>
+          {% endfor %}
+<!--           
           
-          <option value="1">Paciente object (1)</option>
         
           <option value="2">Paciente object (2)</option>
         
           <option value="3">Paciente object (3)</option>
-        
+         -->
         </select>
         </div>       
                         </div>

@@ -12,9 +12,11 @@ class Paciente(models.Model):
 
 class Exame(models.Model):
     id_exame = models.IntegerField(primary_key=True)
-    tipo = models.CharField(max_length=255, unique=True)
-    virus = models.CharField(max_length=255, unique=True)
+    tipo = models.CharField(max_length=255)
+    virus = models.CharField(max_length=255)
     id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    class Meta:
+        unique_together = ('tipo', 'virus',)
 
 class Amostra(models.Model):
     id_amostra = models.IntegerField(primary_key=True)
@@ -26,5 +28,7 @@ class Paciente_exame_amostra(models.Model):
     id_paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE)
     id_exame = models.OneToOneField(Exame, on_delete=models.CASCADE)
     id_amostra = models.OneToOneField(Amostra, on_delete=models.CASCADE)
-    data_de_realizacao = models.DateTimeField(unique=True)
+    data_de_realizacao = models.DateTimeField()
     data_de_solicitacao = models.DateTimeField()
+    class Meta:
+        unique_together = ('id_paciente', 'id_exame', 'id_amostra', 'data_de_realizacao')

@@ -1,5 +1,7 @@
-{{ paciente.nome }}
-{{ paciente.cpf }}
-{{ paciente.endereco }}
+{{ paciente.nome }}<br>
+{{ paciente.cpf }}<br>
+{{ paciente.endereco }}<br>
 {{ paciente.nascimento }}<br>
-<a href="{% url 'index'%}">Return</a>
+<li><a href="{% url 'change_paciente' paciente.id_paciente %}">Atualizar Paciente</a></li>
+<li><a href="{% url 'delete_paciente' paciente.id_paciente %}" onclick="return confirm('Tem certeza que deseja deletar o paciente?')">Deletar Paciente</a></li>
+<li><a href="{% url 'pacientes'%}">Return</a></li>
