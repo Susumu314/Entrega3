@@ -13,25 +13,9 @@ def pacientes(request):
     paciente_list = Paciente.objects.order_by('cpf')
     return render(request, 'gerenciamentoPEA/pacientes.html', {'paciente_list': paciente_list})
 
-def exames(request):
-    exame_list = Exame.objects.order_by('id_exame')
-    return render(request, 'gerenciamentoPEA/exames.html', {'exame_list': exame_list})
-
 def paciente_detail(request, id_paciente):
     paciente = get_object_or_404(Paciente, pk=id_paciente)
     return render(request, 'gerenciamentoPEA/paciente_detalhes.html', {'paciente': paciente})
-
-def exame_detail(request, id_exame):
-    exame = get_object_or_404(Exame, pk=id_exame)
-    return render(request, 'gerenciamentoPEA/exame_detalhes.html', {'exame': exame})
-
-def exames_do_paciente(request, id_paciente):
-    response = "Você está olhando para os exames do paciente %s."
-    return HttpResponse(response % id_paciente)
-
-def add_exame(request):
-    paciente_list = Paciente.objects.order_by('id_paciente')
-    return render(request, 'gerenciamentoPEA/add_exame.html', {'paciente_list': paciente_list})
 
 def add_paciente(request):
     return render(request, 'gerenciamentoPEA/add_paciente.html', {})
@@ -58,6 +42,22 @@ def change_paciente(request, id_paciente):
 def delete_paciente(request, id_paciente):
     Paciente.objects.filter(id_paciente=id_paciente).delete()
     return render(request, 'gerenciamentoPEA/delete_paciente.html', {})
+
+def exames(request):
+    exame_list = Exame.objects.order_by('id_exame')
+    return render(request, 'gerenciamentoPEA/exames.html', {'exame_list': exame_list})
+
+def add_exame(request):
+    paciente_list = Paciente.objects.order_by('id_paciente')
+    return render(request, 'gerenciamentoPEA/add_exame.html', {'paciente_list': paciente_list})
+
+def exame_detail(request, id_exame):
+    exame = get_object_or_404(Exame, pk=id_exame)
+    return render(request, 'gerenciamentoPEA/exame_detalhes.html', {'exame': exame})
+
+def exames_do_paciente(request, id_paciente):
+    response = "Você está olhando para os exames do paciente %s."
+    return HttpResponse(response % id_paciente)
 
 def save_exame(request):
     try:#mudar aqui para nao aceitar id que ja existe
@@ -87,3 +87,37 @@ def change_exame(request, id_exame):
 def delete_exame(request, id_exame):
     Exame.objects.filter(id_exame=id_exame).delete()
     return render(request, 'gerenciamentoPEA/delete_exame.html', {})
+
+def amostras(request):
+    amostra_list = Amostra.objects.order_by('id_amostra')
+    return render(request, 'gerenciamentoPEA/amostras.html', {'amostra_list': amostra_list})
+
+def amostra_detail(request, id_amostra):
+    amostra = get_object_or_404(Amostra, pk=id_amostra)
+    return render(request, 'gerenciamentoPEA/amostra_detalhes.html', {'amostra': amostra})
+
+def add_amostra(request):
+    return render(request, 'gerenciamentoPEA/add_amostra.html', {})
+
+def save_amostra(request):
+    try:#mudar aqui para nao aceitar id que ja existe
+        a = Amostra(id_amostra=request.POST['id_amostra'], codigo_amostra=request.POST['codigo_amostra'], metodo_de_coleta=request.POST['metodo_de_coleta'], material=request.POST['material'])
+    except (KeyError):
+        # Redisplay the question voting form.
+        return render(request, 'gerenciamentoPEA/add_amostra.html', {
+            'error_message': "Deu erro para cadastrar a amostra",
+        })
+    else:
+        a.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return render(request, 'gerenciamentoPEA/save_amostra.html', {'amostra': a})
+
+def change_amostra(request, id_amostra):
+    amostra = get_object_or_404(Amostra, pk=id_amostra)
+    return render(request, 'gerenciamentoPEA/change_amostra.html', {'amostra': amostra})
+
+def delete_amostra(request, id_amostra):
+    Amostra.objects.filter(id_amostra=id_amostra).delete()
+    return render(request, 'gerenciamentoPEA/delete_amostra.html', {})

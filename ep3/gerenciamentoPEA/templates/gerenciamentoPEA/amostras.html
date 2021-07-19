@@ -1,0 +1,11 @@
+{% if amostra_list %}
+    <ul>
+    {% for amostra in amostra_list %}
+        <li><a href="{% url 'a_detalhes' amostra.id_amostra %}">{{ amostra.codigo_amostra }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Não tem amostras.</p>
+{%endif%}
+<a href="{% url 'add_amostra'%}">Adicionar amostras</a><br>
+<a href="{% url 'index'%}">Return</a>

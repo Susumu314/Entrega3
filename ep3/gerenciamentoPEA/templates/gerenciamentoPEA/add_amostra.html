@@ -1,0 +1,38 @@
+<h1>Cadastre Amostra</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'save_amostra'%}" method="post">
+    {% csrf_token %}
+    <div>
+        <fieldset class="module aligned ">
+                <div class="form-row field-id_amostra">
+                        <div>
+                                <label class="required" for="id_id_amostra">Id amostra:</label>
+                                    <input type="number" name="id_amostra" class="vIntegerField" required="" id="id_id_amostra">
+                        </div>
+                </div>
+                <div class="form-row field-codigo_amostra">
+                        <div>
+                                <label class="required" for="id_codigo_amostra">Codigo amostra:</label>
+                                    <input type="text" name="codigo_amostra" class="vTextField" maxlength="255" required="" id="id_codigo_amostra">
+                        </div>
+                </div>
+                <div class="form-row field-metodo_de_coleta">
+                        <div>
+                                <label class="required" for="id_metodo_de_coleta">Metodo de coleta:</label>
+                                    <input type="text" name="metodo_de_coleta" class="vTextField" maxlength="255" required="" id="id_metodo_de_coleta">
+                        </div>
+                </div>
+                <div class="form-row field-material">
+                        <div>
+                                <label class="required" for="id_material">Material:</label>
+                                    <input type="text" name="material" class="vTextField" maxlength="255" required="" id="id_material">
+                        </div>
+                </div>
+        </fieldset>
+    <div class="submit-row">
+    <input type="submit" value="Save">
+    </div>
+    </div>
+    </form>

@@ -1,0 +1,7 @@
+{{ amostra.id }}<br>
+{{ amostra.codigo_amostra}}<br>
+{{ amostra.metodo_de_coleta }}<br>
+{{ amostra.material }}<br>
+<li><a href="{% url 'change_amostra' amostra.id_amostra %}">Atualizar Amostra</a></li>
+<li><a href="{% url 'delete_amostra' amostra.id_amostra %}" onclick="return confirm('Tem certeza que deseja deletar a amostra?')">Deletar Amostra</a></li>
+<li><a href="{% url 'amostras'%}">Return</a></li>

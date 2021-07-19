@@ -17,4 +17,10 @@ urlpatterns = [
     path('exames/save_exame/', views.save_exame, name='save_exame'),
     path('exames/<int:id_exame>/change_exame', views.change_exame, name='change_exame'),
     path('exames/<int:id_exame>/delete_exame', views.delete_exame, name='delete_exame'),
+    path('amostras/', views.amostras, name='amostras'),
+    path('amostras/add_amostra/', views.add_amostra, name='add_amostra'),
+    path('amostras/save_amostra/', views.save_amostra, name='save_amostra'),
+    path('amostras/<int:id_amostra>/change_amostra', views.change_amostra, name='change_amostra'),
+    path('amostras/<int:id_amostra>/delete_amostra', views.delete_amostra, name='delete_amostra'),
+    path('amostras/<int:id_amostra>/', views.amostra_detail, name='a_detalhes'),
 ]
