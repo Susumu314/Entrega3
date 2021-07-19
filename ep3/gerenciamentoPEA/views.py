@@ -59,9 +59,13 @@ def delete_paciente(request, id_paciente):
     Paciente.objects.filter(id_paciente=id_paciente).delete()
     return render(request, 'gerenciamentoPEA/delete_paciente.html', {})
 
-def save_exame(request):#Aqui ta dando erro pq estou usando o .create tem que ter um if que checa se ja existe o exame para altera-lo
+def save_exame(request):
     try:#mudar aqui para nao aceitar id que ja existe
         p = get_object_or_404(Paciente, pk=request.POST['id_paciente'])
+        try:
+            Exame.objects.filter(id_exame=request.POST['id_exame']).delete()
+        except:
+            pass
         p.exame_set.create(id_exame=request.POST['id_exame'], tipo=request.POST['tipo'], virus=request.POST['virus'])
     except (KeyError):
         # Redisplay the question voting form.
