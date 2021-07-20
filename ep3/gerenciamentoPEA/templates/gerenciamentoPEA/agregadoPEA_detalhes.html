@@ -1,0 +1,8 @@
+<a href="{% url 'p_detalhes' agregadoPEA.id_paciente.id_paciente %}">Paciente: {{ agregadoPEA.id_paciente.cpf }}</a><br>
+<a href="{% url 'e_detalhes' agregadoPEA.id_exame.id_exame %}">Exame: {{ agregadoPEA.id_exame.id_exame }}</a><br>
+<a href="{% url 'a_detalhes' agregadoPEA.id_amostra.id_amostra %}">Amostra: {{ agregadoPEA.id_amostra.codigo_amostra }}</a><br>
+Data Realizacao: {{ agregadoPEA.data_de_realizacao}}<br>
+Data Solicitacao: {{ agregadoPEA.data_de_solicitacao}}<br>
+<li><a href="{% url 'change_agregadoPEA' agregadoPEA.id %}">Atualizar Paciente_exame_amostra</a></li>
+<li><a href="{% url 'delete_agregadoPEA' agregadoPEA.id %}" onclick="return confirm('Tem certeza que deseja deletar o Paciente_exame_amostra?')">Deletar Paciente_exame_amostra</a></li>
+<li><a href="{% url 'agregadoPEAs'%}">Return</a></li>

@@ -1,0 +1,84 @@
+<h1>Atualize Paciente_amostra_exame</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'save_agregadoPEA'%}" method="post">
+    {% csrf_token %}
+        <div>
+                <fieldset class="module aligned ">
+                        <div class="form-row field-id_paciente">
+                                <div>
+                                        <label class="required" for="id_id_paciente">Id paciente:</label>
+                                            <div class="related-widget-wrapper">
+                    <select name="id_paciente" required="" id="id_id_paciente">
+                  <option value="" selected="">---------</option>
+                  {% for paciente in paciente_list %}
+                        {%if paciente.id_paciente == agregadoPEA.id_paciente.id_paciente %}
+                                <option value="{{paciente.id_paciente}}" selected="selected">{{paciente.cpf}}</option>
+                        {% else %}
+                                <option value="{{paciente.id_paciente}}">{{paciente.cpf}}</option>
+                        {% endif %}
+                  {% endfor %}
+                </select>
+                </div>    
+                                </div>
+                        </div>
+                        <div class="form-row field-id_exame">
+                                <div>
+                                        <label class="required" for="id_id_exame">Id exame:</label>
+                                            <div class="related-widget-wrapper">
+                    <select name="id_exame" required="" id="id_id_exame">
+                  <option value="" selected="">---------</option>
+                  {% for exame in exame_list %}
+                        {%if exame.id_exame == agregadoPEA.id_exame.id_exame %}
+                                <option value="{{exame.id_exame}}" selected="selected">{{exame.id_exame}}</option>
+                        {% else %}
+                                <option value="{{exame.id_exame}}">{{exame.id_exame}}</option>
+                        {% endif %}
+                  {% endfor %}
+                </select>
+                </div>    
+                                </div>
+                        </div>
+                        <div class="form-row field-id_amostra">
+                                <div>
+                                        <label class="required" for="id_id_amostra">Id amostra:</label>
+                                            <div class="related-widget-wrapper">
+                    <select name="id_amostra" required="" id="id_id_amostra">
+                  <option value="" selected="">---------</option>
+                  {% for amostra in amostra_list %}
+                        {%if amostra.id_amostra == agregadoPEA.id_amostra.id_amostra %}
+                                <option value="{{amostra.id_amostra}}" selected="selected">{{amostra.codigo_amostra}}</option>
+                        {% else %}
+                                <option value="{{amostra.id_amostra}}">{{codigo.id_amostra}}</option>
+                        {% endif %}
+                  {% endfor %}
+                </select>
+                </div>      
+                                </div>
+                        </div>
+                        <div class="form-row field-data_de_realizacao">
+                                <div>
+                                        <label class="required" for="id_data_de_realizacao_0">Data de realizacao:</label>
+                                            <p class="datetime">
+                  Date (AAAA-MM-DD): <input type="text" name="data_de_realizacao_0" value="{{agregadoPEA.data_de_realizacao.date.isoformat}}" class="vDateField" size="10" required="" id="id_data_de_realizacao_0">
+                <br>
+                  Time (HH:MM:SS): <input type="text" name="data_de_realizacao_1" value="{{agregadoPEA.data_de_realizacao.time.isoformat}}" class="vTimeField" size="8" required="" id="id_data_de_realizacao_1">
+                <br></p>   
+                                </div>
+                        </div>
+                        <div class="form-row field-data_de_solicitacao">
+                                <div>
+                                        <label class="required" for="id_data_de_solicitacao_0">Data de solicitacao:</label>
+                                            <p class="datetime">
+                  Date (AAAA-MM-DD): <input type="text" name="data_de_solicitacao_0" value="{{agregadoPEA.data_de_solicitacao.date.isoformat}}" class="vDateField" size="10" required="" id="id_data_de_solicitacao_0">
+                <br>
+                  Time (HH:MM:SS): <input type="text" name="data_de_solicitacao_1" value="{{agregadoPEA.data_de_solicitacao.time.isoformat}}" class="vTimeField" size="8" required="" id="id_data_de_solicitacao_1">
+                <br></p>      
+                                </div>
+                        </div>
+                </fieldset>
+        <div class="submit-row">
+                <input type="submit" value="Save">
+        </div>
+        </div>
+    </form>

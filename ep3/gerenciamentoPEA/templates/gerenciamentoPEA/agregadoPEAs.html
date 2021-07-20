@@ -1,0 +1,11 @@
+{% if agregadoPEA_list %}
+    <ul>
+    {% for agregadoPEA in agregadoPEA_list %}
+        <li><a href="{% url 'ag_detalhes' agregadoPEA.id %}">{{ agregadoPEA.id }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Não tem agregadoPEAs.</p>
+{%endif%}
+<a href="{% url 'add_agregadoPEA'%}">Adicionar agregadoPEAs</a><br>
+<a href="{% url 'index'%}">Return</a>

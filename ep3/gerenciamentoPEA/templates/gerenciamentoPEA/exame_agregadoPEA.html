@@ -1,0 +1,7 @@
+{{ exame.id_exame }}<br>
+{{ exame.tipo }}<br>
+{{ exame.virus }}<br>
+<a href="{% url 'p_detalhes' exame.id_paciente.id_paciente %}">Paciente: {{ exame.id_paciente.cpf }}</a>
+<li><a href="{% url 'change_exame' exame.id_exame %}">Atualizar Exame</a></li>
+<li><a href="{% url 'delete_exame' exame.id_exame %}" onclick="return confirm('Tem certeza que deseja deletar o exame?')">Deletar Exame</a></li>
+<li><a href="{% url 'exames'%}">Return</a></li>
