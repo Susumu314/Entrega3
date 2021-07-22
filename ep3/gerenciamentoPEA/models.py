@@ -25,9 +25,9 @@ class Amostra(models.Model):
     material = models.CharField(max_length=255)
 
 class Paciente_exame_amostra(models.Model):
-    id_paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE)
-    id_exame = models.OneToOneField(Exame, on_delete=models.CASCADE)
-    id_amostra = models.OneToOneField(Amostra, on_delete=models.CASCADE)
+    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    id_exame = models.ForeignKey(Exame, on_delete=models.CASCADE)
+    id_amostra = models.ForeignKey(Amostra, on_delete=models.CASCADE)
     data_de_realizacao = models.DateTimeField()
     data_de_solicitacao = models.DateTimeField()
     class Meta:

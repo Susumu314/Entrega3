@@ -150,7 +150,7 @@ def save_agregadoPEA(request):
     exame = get_object_or_404(Exame, pk=request.POST['id_exame'])
     amostra = get_object_or_404(Amostra, pk=request.POST['id_amostra'])
     try:
-        try:
+        try:#se ja existir o agregado, deleta e atualiza as informações
             Paciente_exame_amostra.objects.filter(id_paciente=paciente, id_exame=exame, id_amostra=amostra).delete()
         except:
             pass
