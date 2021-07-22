@@ -75,20 +75,20 @@ WSGI_APPLICATION = 'ep3.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    # Tirar esses comentarios e criar as tabelas Pacientes - Exames - Amostras no data.ime se algum dia voltar a funcionar
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': '6805993',
-    #     'USER': '8989317',
-    #     'PASSWORD': 'AeCh6ohF',
-    #     'HOST': 'data.ime.usp.br',
-    #     'PORT': '23432',
-    # }
-
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '8989317',
+        'USER': '8989317',
+        'PASSWORD': 'AeCh6ohF',
+        'HOST': 'data.ime.usp.br',
+        #'PORT': '53231' não consegui acessar pela porta 53231, dá erro> 'Is the server running on host "data.ime.usp.br" (143.107.45.189) and accepting TCP/IP connections on port 53231?'
+        'PORT': '23432', #usando a mesma porta utilizada no exemplo dado funcionou
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
